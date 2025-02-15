@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archinova - არქიტექტორთა აუქციონი</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Archinova</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">მთავარი</a></li>
+                   <li><a href="{{ url_for('auction') }}">აუქციონი</a></li>
+                    <li><a href="{{ url_for('register') }}">რეგისტრაცია</a></li>
+                    <li><a href="{{ url_for('login') }}">შესვლა</a></li>
+                 
+
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section id="home" class="section">
+            <div class="container">
+                <h2>კეთილი იყოს თქვენი მობრძანება Archinova-ზე!</h2>
+                <p>Archinova არის ინოვაციური პლატფორმა, სადაც არქიტექტორები შეძლებენ თავიანთი ნამუშევრების გამოფენასა და გაყიდვას. ჩვენი მიზანია უზრუნველვყოთ ხელმისაწვდომობა მაღალი ხარისხის არქიტექტურული პროექტებისთვის და გავხადოთ მათი წარმოჩენა საზოგადოებისთვის უფრო მარტივი და ეფექტური.</p>
+                <p>ამ პლატფორმის მეშვეობით, თქვენ შეძლებთ დაესწროთ აუქციონებს, იპოვოთ უნიკალური ნამუშევრები და დაიწყოთ ახალი შემოქმედებითი ურთიერთობები არქიტექტორებთან და დიზაინერებთან.</p>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>ჩვენ შესახებ</h2>
+                <p>ჩვენი მიზანი იყო შეგვექმნა ისეთი პლათფორმა სადაც ყველას შეეძლო დარეგისტრირება და საოცნებო სახლის ყიდვა სწრაფად და მარტივად. ჩვენი  პლათფორმა აერთიანებს არქიტექტორებსა და დამკვეთებს</p>
+                
+            </div>
+        </section>
+
+        <section id="auction" class="section">
+            <div class="container">
+                <a href="{{ url_for('auction') }}" class="btn">აუქციონი</a>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>კონტაქტი</h2>
+                <p>გსურთ მეტი ინფორმაცია? დაგვიკავშირდით! ჩვენ მზად ვართ დავეხმაროთ ნებისმიერი კითვისთვის, რომელიც თქვენ გაქვთ Archinova-ს პლატფორმაზე.</p>
+                <p>Email: <a href="mailto:support@archinova.com">sharikadzetsotne1@gmail.com</a></p>
+                <p>ტელეფონი: +995 555 555 555</p>
+            </div>
+        </section>
+    </main>
+                    
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Main content goes here -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Archinova. ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

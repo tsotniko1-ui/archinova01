@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archinova - აუქციონი</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Archinova - აუქციონი</h1>
+        <button id="back-to-menu" onclick="goToIndex()">მთავარ მენიუში დაბრუნება</button>
+    </header>
+
+    <main>
+        <section id="upload">
+            <h2>ახალი აუქციონის დამატება</h2>
+            <form id="upload-form" method="POST" enctype="multipart/form-data" action="{{ url_for('create_auction') }}">
+                <input type="text" name="work-name" placeholder="სახელი" required>
+                <textarea name="work-description" placeholder="აღწერა" required></textarea>
+                <input type="number" name="work-price" placeholder="საწყისი ფასი" required>
+                <input type="datetime-local" name="auction-end-time" required>
+                <input type="file" name="work-image" accept="image/*" required>
+                
+                <!-- Hidden fields for user data -->
+                <input type="hidden" name="seller-name" id="seller-name">
+                <input type="hidden" name="seller-email" id="seller-email">
+
+                <button type="submit">დაიწყე აუქციონი</button>
+            </form>
+        </section>
+
+        <section id="auction">
+            <h2>აუქციონი</h2>
+            <div id="auction-gallery">
+                {% for auction in auctions %}
+                    <div class="auction-item">
+                        <h3>{{ auction.name }}</h3>
+                        <p>{{ auction.description }}</p>
+                        <p>საწყისი ფასი: {{ auction.price }} ₾</p>
+                        <p>დასრულების დრო: {{ auction.end_time }}</p>
+                        <p>გაყიდვის ავტორი: {{ auction.seller_name }}</p>
+                        <img src="{{ url_for('static', filename='uploads/' + auction.image) }}" alt="Auction Image">
+                        
+                        <h4>დადებული ბიდები:</h4>
+                        <ul id="bids-list-{{ auction.id }}">
+                            {% for bid in auction.bids %}
+                                <li>{{ bid.bidder }} ({{ bid.bidder_email }}): {{ bid.bid_amount }} ₾</li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <form class="bid-form" data-auction-id="{{ auction.id }}">
+                            <input type="number" name="bid-amount" placeholder="შეიყვანეთ ბიდი" required>
+                            <button type="submit">დადე ბიდი</button>
+                        </form>
+
+                        {% if session.get('username') == auction.seller_name %}
+                        <button onclick="deleteAuction('{{ auction.id }}')">წაშლა</button>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Archinova. ყველა უფლება დაცულია.</p>
+    </footer>
+
+    <script>
+        function goToIndex() {
+            window.location.href = "{{ url_for('index') }}";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("{{ url_for('get_user') }}")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.name && data.email) {
+                        document.getElementById("seller-name").value = data.name;
+                        document.getElementById("seller-email").value = data.email;
+                    }
+                })
+                .catch(error => console.error("Error fetching user data:", error));
+        });
+
+        document.querySelectorAll(".bid-form").forEach(form => {
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                const auctionId = this.dataset.auctionId;
+                const bidAmount = this.querySelector("input[name='bid-amount']").value;
+
+                fetch("{{ url_for('place_bid') }}", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ auction_id: auctionId, amount: bidAmount })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const bidList = document.getElementById(`bids-list-${auctionId}`);
+                        const newBid = document.createElement("li");
+                        newBid.textContent = `${data.username} (${data.email}): ${data.amount} ₾`;
+                        bidList.appendChild(newBid);
+                    } else {
+                        alert("ბიდის დადება ვერ მოხერხდა!");
+                    }
+                });
+            });
+        });
+
+        function deleteAuction(auctionId) {
+            fetch(`/delete_auction/${auctionId}`, { method: "POST" })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("აუქციონი წარმატებით წაიშალა!");
+                    location.reload();
+                } else {
+                    alert("წაშლის შეცდომა: " + data.error);
+                }
+            })
+            .catch(error => console.error("Error deleting auction:", error));
+        }
+    </script>
+</body>
+</html>

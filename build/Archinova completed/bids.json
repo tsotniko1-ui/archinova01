@@ -1,0 +1,91 @@
+[
+    {
+        "auction_id": "2",
+        "bidder": "Mwvada20",
+        "bid_amount": "65554"
+    },
+    {
+        "auction_id": "1",
+        "bidder": "Mwvada20",
+        "bid_amount": "577776576576"
+    },
+    {
+        "auction_id": "2",
+        "bidder": "Mwvada20",
+        "bid_amount": "567675757"
+    },
+    {
+        "auction_id": "2",
+        "bidder": "Mwvada20",
+        "bid_amount": "5676757579"
+    },
+    {
+        "auction_id": "2",
+        "bidder": "Mwvada20",
+        "bid_amount": "575567"
+    },
+    {
+        "auction_id": "1",
+        "bidder": "Mwvada20",
+        "bid_amount": "57657"
+    },
+    {
+        "auction_id": "1",
+        "bidder": "Mwvada20",
+        "bid_amount": "57657"
+    },
+    {
+        "auction_id": 10,
+        "bidder": "Mwvada20",
+        "bid_amount": 57765667570
+    },
+    {
+        "auction_id": 9,
+        "bidder": "Mwvada20",
+        "bid_amount": 676876881111
+    },
+    {
+        "auction_id": 6,
+        "bidder": "Mwvada20",
+        "bid_amount": 69
+    },
+    {
+        "auction_id": 6,
+        "bidder": "gurama",
+        "bid_amount": 666878
+    },
+    {
+        "auction_id": 17,
+        "bidder": "gurama",
+        "bid_amount": 700
+    },
+    {
+        "auction_id": 2,
+        "bidder": "gurama",
+        "bid_amount": 657567567
+    },
+    {
+        "auction_id": 2,
+        "bidder": "gurama",
+        "bidder_email": "gsherozia@gmail.com",
+        "bid_amount": 686786878
+    },
+    {
+        "auction_id": 6,
+        "bidder": "gurama",
+        "bidder_email": "gsherozia@gmail.com",
+        "bid_amount": 765675756
+    },
+    {
+        "auction_id": 1,
+        "bidder": "gurama",
+        "bidder_email": "gsherozia@gmail.com",
+        "bid_amount": 98798798798
+    },
+    {
+        "auction_id": 18,
+        "bidder": "gurama",
+        "bidder_email": "gsherozia@gmail.com",
+        "bid_amount": 90
+    }
+]

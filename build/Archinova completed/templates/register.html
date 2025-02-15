@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>რეგისტრაცია - Archinova</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="register-container">
+        <h2>რეგისტრაცია</h2>
+
+        <!-- Display success/error messages -->
+        {% if msg %}
+        <p class="message">{{ msg }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('register') }}" method="post">
+            <label for="username">მომხმარებლის სახელი:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Gmail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">პაროლი:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">რეგისტრაცია</button>
+        </form>
+
+        <div class="account-exists">
+            <p>უკვე გაქვთ ანგარიში? <a href="{{ url_for('login') }}" class="login-link">შესვლა</a></p>
+        </div>
+    </div>
+</body>
+</html>
